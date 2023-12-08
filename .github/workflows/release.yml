@@ -14,7 +14,7 @@ jobs:
 
       -   name: Generate plugin artifact
           run: |
-            rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "${GITHUB_WORKSPACE}/build" --delete --delete-excluded
+            rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "${GITHUB_WORKSPACE}/builds/" --delete --delete-excluded
             zip -r "${GITHUB_WORKSPACE}/release.zip" ${{ inputs.plugin_slug }}
 
       -   name: Upload release asset
