@@ -49,6 +49,6 @@
     "bin": ["builds/impress"],
     "dist": {
         "type": "zip",
-        "url": "https://github.com/iamntz/carbon-fields-urlpicker/release.zip"
+        "url": "https://github.com/kjohnson/impress-cli/releases/download/v0.0.1/release.zip"
     }
 }
