@@ -1,0 +1,28 @@
+name: 🚀 Release
+
+on:
+  release:
+    types: [ released ]
+
+jobs:
+  release:
+    name: Release Build
+    runs-on: ubuntu-latest
+
+    steps:
+      -   uses: actions/checkout@v3
+
+      -   name: Generate plugin artifact
+          run: |
+            rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "${GITHUB_WORKSPACE}/build" --delete --delete-excluded
+            zip -r "${GITHUB_WORKSPACE}/release.zip" ${{ inputs.plugin_slug }}
+
+      -   name: Upload release asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
+          with:
+            upload_url: ${{ github.event.release.upload_url }}
+            asset_path: ${{ github.workspace }}/release.zip
+            asset_name: impress.zip
+            asset_content_type: application/zip
