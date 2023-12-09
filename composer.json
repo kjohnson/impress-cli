@@ -49,7 +49,7 @@
     "bin": ["builds/impress"],
     "dist": {
         "type": "zip",
-        "url": "https://github.com/kjohnson/impress-cli/releases/download/v0.0.1/release.zip"
+        "url": "https://github.com/kjohnson/impress-cli/raw/master/release.zip"
     },
     "scripts": {
         "build": "php impress app:build impress && zip -r release.zip builds/"
