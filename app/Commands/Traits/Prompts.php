@@ -3,9 +3,7 @@
 namespace App\Commands\Traits;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use LaravelZero\Framework\Commands\Command;
 
 use function Termwind\render;
 use function Laravel\Prompts\text;
@@ -15,12 +13,39 @@ trait Prompts
 {
     protected function getDomain()
     {
-        return $this->getArgumentOrSelect('domain', 'Domain:', ['Member', 'Contributor', 'Owner']);
+        $domains = $this->getAvailableDomains();
+        return $domains
+            ? $this->getArgumentOrSelect('domain', 'Domain:', $domains)
+            : $this->getArgumentOrText('domain', 'Domain:');
+    }
+
+    protected function getAvailableDomains()
+    {
+        $this->ensureSourceDirectoryExists();
+
+        return array_map(function($directory) {
+            return Str::replace('src/', '', $directory);
+        }, File::directories('src/'));
+    }
+
+    protected function ensureSourceDirectoryExists(): void
+    {
+        if(!File::exists('src/')) {
+            render(<<<"HTML"
+                <div class="py-1 ml-2">
+                    <div class="px-1 bg-red-500 text-gray-300">ERROR</div>
+                    <em class="ml-1">
+                      Source directory (src/) does not exist.
+                    </em>
+                </div>
+            HTML);
+            die();
+        }
     }
 
     protected function getFileName()
     {
-        return $this->getArgumentOrText('name', 'Name:');
+        return $this->getArgumentOrText('name', 'Class Name:');
     }
 
     protected function getArgumentOrText($slug, $label)
@@ -33,6 +58,6 @@ trait Prompts
 
     protected function getArgumentOrSelect($slug, $prompt, array $options)
     {
-        return $this->argument('domain') ?? select($prompt, $options);
+        return $this->argument($slug) ?? select($prompt, $options);
     }
 }
