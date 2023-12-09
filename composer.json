@@ -46,7 +46,7 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "bin": ["builds/impress"],
+    "bin": ["impress"],
     "dist": {
         "type": "zip",
         "url": "https://github.com/kjohnson/impress-cli/raw/master/release.zip"
