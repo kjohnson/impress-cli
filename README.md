@@ -1,40 +1,46 @@
-<a href="https://supportukrainenow.org/"><img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg" width="100%"></a>
+```ascii
+ _____                                   
+|_   _|                                  
+  | |  _ __ ___  _ __  _ __ ___  ___ ___ 
+  | | | '_ ` _ \| '_ \| '__/ _ \/ __/ __|
+ _| |_| | | | | | |_) | | |  __/\__ \__ \
+|_____|_| |_| |_| .__/|_|  \___||___/___/
+                | |                      
+                |_|                      
+```
 
-------
+**Impress** is a developer command line tool for generating Domain Driven Design (DDD) classes, such as _actions_, _controllers_, and _exceptions_ under a specific _domain_.
 
-<p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" />
-</p>
+## Installation
 
-<p align="center">
-  <a href="https://github.com/laravel-zero/framework/actions"><img src="https://github.com/laravel-zero/laravel-zero/actions/workflows/tests.yml/badge.svg" alt="Build Status"></img></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/dt/laravel-zero/framework.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/v/laravel-zero/framework.svg?label=stable" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/l/laravel-zero/framework.svg" alt="License"></a>
-</p>
+The CLI installs globally via [Composer](https://getcomposer.org/) and can be called from any directory containing a `src` sub-directory.
 
-<h4> <center>This is a <bold>community project</bold> and not an official Laravel one </center></h4>
+```bash
+composer global require kjohnson/impress-cli
+```
 
-Laravel Zero was created by [Nuno Maduro](https://github.com/nunomaduro) and [Owen Voke](https://github.com/owenvoke), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+Note: `.composer/vendor/bin` must be included in PATH for the command to be called globally, which varies across operating systems.
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](https://laravel-zero.com/docs/database/), Laravel [Logging](https://laravel-zero.com/docs/logging/) and many others.
-- Supports interactive [menus](https://laravel-zero.com/docs/build-interactive-menus/) and [desktop notifications](https://laravel-zero.com/docs/send-desktop-notifications/) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](https://laravel-zero.com/docs/task-scheduling/) and  a [Standalone Compiler](https://laravel-zero.com/docs/build-a-standalone-application/).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
+## Usage
 
-------
+Once installed, the CLI can be called from any directory containing a `src` sub-directory.
 
-## Documentation
+```bash
+  USAGE:  <command> [options] [arguments]
 
-For full documentation, visit [laravel-zero.com](https://laravel-zero.com/).
+  make:action     Create a new Action class
+  make:controller Create a new Controller class
+  make:domain     Create a new Domain directory
+  make:exception  Create a new Exception class
+```
 
-## Support the development
-**Do you like this project? Support it by donating**
+Example usage:
+```bash
+impress make:domain User
+// Creates the `User` domain/directory within `src/`
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+impress make:action User UpdateUserPassword
+// Creates src/User/Actions/UpdateUserPassword.php
+```
 
-## License
-
-Laravel Zero is an open-source software licensed under the MIT license.
+Each command will generate the appropriate directories and files within the corresponding _Domain_.
