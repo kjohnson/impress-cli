@@ -40,7 +40,8 @@ impress make:domain User
 // Creates the `User` domain/directory within `src/`
 
 impress make:action User UpdateUserPassword
-// Creates src/User/Actions/UpdateUserPassword.php
+// Creates the `UpdateUserPassword` action within the `User` domain
+// See src/User/Actions/UpdateUserPassword.php
 ```
 
 Each command will generate the appropriate directories and files within the corresponding _Domain_.
