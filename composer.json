@@ -1,7 +1,7 @@
 {
     "name": "kjohnson/impress-cli",
     "description": "A CLI for generating DDD classes",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "type": "project",
     "license": "MIT",
     "support": {
