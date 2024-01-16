@@ -11,6 +11,7 @@ use function Termwind\render;
 
 class ActionCommand extends Command
 {
+    use Traits\ComposerConfig;
     use Traits\Prompts;
     use Traits\Stubs;
 
@@ -45,6 +46,7 @@ class ActionCommand extends Command
             domain: $domain,
             name: $name,
             path: $path,
+            namespace: $this->getNamespace(),
         );
 
         render(<<<"HTML"

@@ -36,7 +36,7 @@ class DomainCommand extends Command
      */
     public function handle()
     {
-        $domain = $this->getDomain();
+        $domain = $this->getArgumentOrText('domain', 'Domain:');
         $dir = "src/$domain";
         $path = "$dir/ServiceProvider.php";
 

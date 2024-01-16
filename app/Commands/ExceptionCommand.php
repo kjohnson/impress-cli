@@ -11,6 +11,7 @@ use function Termwind\render;
 
 class ExceptionCommand extends Command
 {
+    use Traits\ComposerConfig;
     use Traits\Prompts;
     use Traits\Stubs;
 
@@ -44,6 +45,7 @@ class ExceptionCommand extends Command
             domain: $domain,
             name: $name,
             path: $path,
+            namespace: $this->getNamespace(),
         );
 
         render(<<<"HTML"
