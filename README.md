@@ -45,3 +45,12 @@ impress make:action User UpdateUserPassword
 ```
 
 Each command will generate the appropriate directories and files within the corresponding _Domain_.
+
+## Maintenance
+
+### Releasing an update
+1. Update the version number in `composer.json`
+2. Run `composer run build`
+3. Commit and push changes
+4. Create a new release on GitHub
+5. Update the package on Packagist
