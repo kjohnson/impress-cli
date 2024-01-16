@@ -11,6 +11,7 @@ use function Termwind\render;
 
 class DomainCommand extends Command
 {
+    use Traits\ComposerConfig;
     use Traits\Prompts;
     use Traits\Stubs;
 
@@ -43,6 +44,7 @@ class DomainCommand extends Command
             stub: 'service-provider',
             domain: $domain,
             path: $path,
+            namespace: $this->getNamespace(),
         );
 
         render(<<<"HTML"
