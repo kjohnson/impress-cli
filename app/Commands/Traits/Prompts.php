@@ -23,9 +23,19 @@ trait Prompts
     {
         $this->ensureSourceDirectoryExists();
 
-        return array_map(function($directory) {
-            return Str::replace('src/', '', $directory);
-        }, File::directories('src/'));
+        $domains = [];
+        foreach(File::directories('src/') as $directory) {
+            if(File::exists("$directory/ServiceProvider.php")) {
+                $domains[] = $directory;
+            }
+            foreach(File::directories($directory) as $subdirectory) {
+                if(File::exists("$subdirectory/ServiceProvider.php")) {
+                    $domains[] = $subdirectory;
+                }
+            }
+        }
+
+        return array_map(fn($domain) => Str::replace('src/', '', $domain), $domains);
     }
 
     protected function ensureSourceDirectoryExists(): void

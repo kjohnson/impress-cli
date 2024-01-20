@@ -13,7 +13,7 @@ trait Stubs
     {
         $contents = Str::of(File::get(dirname( dirname(__FILE__) )."/stubs/$stub.stub"))
             ->replace('__NAMESPACE__', $namespace)
-            ->replace('__DOMAIN__', $domain)
+            ->replace('__DOMAIN__', Str::of($domain)->replace('/', '\\'))
             ->replace('__NAME__', $name);
 
         Storage::build([
